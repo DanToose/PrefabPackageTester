@@ -15,6 +15,7 @@ public class NavmeshAgentScript : MonoBehaviour {
     private Transform currentDestination;
     private int PatrolPoint;
     private float dist;
+    private float seenDist;
     public int AIState;
 
     public Vector3 guardPosition;
@@ -22,13 +23,15 @@ public class NavmeshAgentScript : MonoBehaviour {
     public float sightRange;
     private RaycastHit hitThing;
     public bool inLoS;
+    private bool hadChased;
     private Vector3 lastSeenAt;
 
     // This enemy uses an integer to flag the AI state:
     // 0 = Stay still and look around
-    // 1 = Head to the player and raycast to them for LOS check.
+    // 1 = Head to the player and raycast to check LOS again
     // 2 = Head to player's last know location.
     // 3 = Patrol
+    // 4 = Check for LoS
 
     // Use this for initialization
     void Start () 
@@ -49,53 +52,38 @@ public class NavmeshAgentScript : MonoBehaviour {
 
         if (AIState == 1)
         {
-            float diff = Vector3.Distance(guardPosition, target.transform.position); //distance from guard to player
+            float diff = Vector3.Distance(guardPosition, target.transform.position);
             if (diff <= sightRange)  // if the player is within the guard's maximum vision range
             {
-                Vector3 direction = (target.transform.position - guardPosition).normalized; //direction FROM guard towards player
+                agent.SetDestination(target.position);
+                lastSeenAt = target.transform.position;
 
-                Ray g_ray = new Ray(guardPosition, direction);
-                Debug.DrawRay(g_ray.origin, g_ray.direction * sightRange); //sightRange was 15
-                if (Physics.Raycast(guardPosition, direction * diff, out hitThing))
-                {
-                    string tag = hitThing.collider.tag;
-                    string name = hitThing.collider.gameObject.name;
-                    Debug.Log("tag" + tag + "Object =" +name);
-                    if (hitThing.collider.tag != "Player")
-                    {
-                        inLoS = false;
-                    }
-                    else
-                    {
-                        inLoS = true;
-                        agent.SetDestination(target.position);
-                        lastSeenAt = target.transform.position;
-                    }
-                }
+                //hadChased = true;
             }
             else
             {
-                    inLoS =  false;
-                    AIState = 2; // short hack to enter patrol
-
+                AIState = 2;
             }
         }
 
-        if (AIState == 2)
+        if (AIState == 2) // HEAD TO LAST PLACE PLAYER WAS SEEN
         {
 
-            dist = Vector3.Distance(lastSeenAt, transform.position);
-            if (dist > 0.1)
+            //dist = Vector3.Distance(lastSeenAt, transform.position);
+            seenDist = Vector3.Distance(lastSeenAt, guardPosition);
+            if (seenDist > 0.1)
             {
                 agent.SetDestination(lastSeenAt);
             }
-            else if (dist <= 0.1)
+            else if (seenDist <= 0.1)
             {
+                //hadChased = false;
                 AIState = 3;
+                seenDist = 100;
             }
         }
             
-        if (AIState == 3)
+        if (AIState == 3) // ON PATROL
         {
             currentDestination = waypoints[PatrolPoint].transform;
             dist = Vector3.Distance(currentDestination.position, transform.position);
@@ -114,5 +102,38 @@ public class NavmeshAgentScript : MonoBehaviour {
                 PatrolPoint++;
             }
         }
-	}
+    }
 }
+
+
+/*       if (AIState == 4) // AI CHECK FOR LOS FOR SIGHTING
+       {
+           Vector3 direction = (target.transform.position - guardPosition).normalized; //direction FROM guard towards player
+           Ray g_ray = new Ray(guardPosition, direction);
+           Debug.DrawRay(g_ray.origin, g_ray.direction * sightRange); //sightRange was 15
+
+           int layerMask = 1 << 3;
+           layerMask = ~layerMask;
+
+           if (Physics.Raycast(guardPosition, direction * diff, out hitThing, layerMask))
+           {
+               string tag = hitThing.collider.tag;
+               string name = hitThing.collider.gameObject.name;
+               //Debug.Log("Object = " + name + " tag = " + tag);
+               if (hitThing.collider.tag != "PlayerBody")
+               {
+                   Debug.Log("tag" + tag + "Object =" + name + " Not hitting PlayerBody");
+                   inLoS = false;
+                   AIState = 3;
+               }
+               else
+               {
+                   inLoS = true;
+                   AIState = 1;
+                   //hadChased = true;
+                   //agent.SetDestination(target.position);
+                   lastSeenAt = target.transform.position;
+               }
+           }
+       }
+*/

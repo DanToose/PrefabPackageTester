@@ -9,11 +9,12 @@ TagManager:
   - Light
   - Interact
   - Environment
+  - PlayerBody
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - PlayerLightSphere
   - Water
   - UI
   - Ally
