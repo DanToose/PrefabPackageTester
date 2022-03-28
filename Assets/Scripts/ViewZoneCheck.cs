@@ -22,7 +22,7 @@ public class ViewZoneCheck : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            if (parent.)
+            //if (parent.)
             
             
             Debug.Log("Player entered trigger zone");
