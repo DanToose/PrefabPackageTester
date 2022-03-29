@@ -24,7 +24,8 @@ public class NavmeshAgentScript : MonoBehaviour {
     private RaycastHit hitThing;
     public bool inLoS;
     private bool hadChased;
-    private Vector3 lastSeenAt;
+    public Vector3 lastSeenAt;
+    public float delay = 3f;
 
     // This enemy uses an integer to flag the AI state:
     // 0 = Stay still and look around
@@ -44,10 +45,18 @@ public class NavmeshAgentScript : MonoBehaviour {
         waypoints.Add(patrolTarget3);
         waypoints.Add(patrolTarget4);
     }
-	
-	// Update is called once per frame
-	void Update () 
+
+    void DelayedSwitch()
     {
+        AIState = 3;
+
+    }
+
+    // Update is called once per frame
+    void Update () 
+    {
+        Debug.Log(AIState);
+
         guardPosition = transform.position;
 
         if (AIState == 1)
@@ -62,7 +71,7 @@ public class NavmeshAgentScript : MonoBehaviour {
             }
             else
             {
-                AIState = 2;
+                //AIState = 2;
             }
         }
 
@@ -74,6 +83,7 @@ public class NavmeshAgentScript : MonoBehaviour {
             if (seenDist > 0.1)
             {
                 agent.SetDestination(lastSeenAt);
+                Invoke("DelayedSwitch", delay);
             }
             else if (seenDist <= 0.1)
             {
@@ -104,7 +114,6 @@ public class NavmeshAgentScript : MonoBehaviour {
         }
     }
 }
-
 
 /*       if (AIState == 4) // AI CHECK FOR LOS FOR SIGHTING
        {

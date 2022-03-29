@@ -11,12 +11,14 @@ public class ViewZoneCheck : MonoBehaviour
     private float sightRange;
     private RaycastHit hitThing;
     private bool inLOS;
+    private NavmeshAgentScript parentObject;
 
     // Start is called before the first frame update
     void Start()
     {
         target = GameObject.FindGameObjectWithTag("Player").transform;
         sightRange = parent.GetComponent<NavmeshAgentScript>().sightRange;
+        parentObject = parent.GetComponent<NavmeshAgentScript>();
     }
 
     // Update is called once per frame
@@ -33,6 +35,11 @@ public class ViewZoneCheck : MonoBehaviour
             RayCastCheck();
 
             if (inLOS == true)
+            {
+                parent.gameObject.GetComponent<NavmeshAgentScript>().AIState = 2;
+                parentObject.lastSeenAt = target.transform.position;
+            }
+            else
             {
                 parent.gameObject.GetComponent<NavmeshAgentScript>().AIState = 1;
             }
@@ -68,7 +75,7 @@ public class ViewZoneCheck : MonoBehaviour
         int layerMask = 1 << 3;
         layerMask = ~layerMask;
 
-        if (Physics.Raycast(guardPosition, direction * sightRange, out hitThing, layerMask))
+        if (Physics.Raycast(guardPosition, direction * sightRange, out hitThing, sightRange, layerMask))
         {
             string tag = hitThing.collider.tag;
             string name = hitThing.collider.gameObject.name;
