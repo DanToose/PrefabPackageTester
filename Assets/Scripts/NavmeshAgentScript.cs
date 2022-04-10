@@ -27,6 +27,8 @@ public class NavmeshAgentScript : MonoBehaviour {
     public Vector3 lastSeenAt;
     public float delay = 3f;
 
+    bool isDebugLog = false;
+
     // This enemy uses an integer to flag the AI state:
     // 0 = Stay still and look around
     // 1 = Head to the player and raycast to check LOS again
@@ -55,7 +57,8 @@ public class NavmeshAgentScript : MonoBehaviour {
     // Update is called once per frame
     void Update () 
     {
-        Debug.Log(AIState);
+        if(isDebugLog)
+            Debug.Log(AIState);
 
         guardPosition = transform.position;
 

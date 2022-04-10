@@ -10,12 +10,23 @@ public class ViewZoneCheck : MonoBehaviour
     public Transform target;
     private float sightRange;
     private RaycastHit hitThing;
-    private bool inLOS;
+    public bool inLOS = false;
+    public bool hasBeenInLOS = false;
     private NavmeshAgentScript parentObject;
+
+    public Vector3 direction;
+
+    public LayerMask hitLayers;
+
+    public GameObject DebugSphere;
+ 
+
+    
 
     // Start is called before the first frame update
     void Start()
     {
+        hitLayers = LayerMask.GetMask("Player") | LayerMask.GetMask("Default") | LayerMask.GetMask("Environment");
         target = GameObject.FindGameObjectWithTag("Player").transform;
         sightRange = parent.GetComponent<NavmeshAgentScript>().sightRange;
         parentObject = parent.GetComponent<NavmeshAgentScript>();
@@ -36,12 +47,15 @@ public class ViewZoneCheck : MonoBehaviour
 
             if (inLOS == true)
             {
-                parent.gameObject.GetComponent<NavmeshAgentScript>().AIState = 2;
-                parentObject.lastSeenAt = target.transform.position;
+                hasBeenInLOS = true;
+                parent.gameObject.GetComponent<NavmeshAgentScript>().AIState = 1; // HEAD TOWARDS PLAYER
+
             }
-            else
+            else if(hasBeenInLOS)
             {
-                parent.gameObject.GetComponent<NavmeshAgentScript>().AIState = 1;
+                hasBeenInLOS = false;
+                parent.gameObject.GetComponent<NavmeshAgentScript>().AIState = 2; // HEAD TO LAST PLAYER SEEN
+                parentObject.lastSeenAt = target.transform.position;
             }
         }
     }
@@ -52,6 +66,7 @@ public class ViewZoneCheck : MonoBehaviour
         {
             Debug.Log("Player left enemy view zone");
             inLOS = false;
+            hasBeenInLOS = false;
 
             if (parent.gameObject.GetComponent<NavmeshAgentScript>().AIState == 1)
             {
@@ -67,18 +82,23 @@ public class ViewZoneCheck : MonoBehaviour
     private void RayCastCheck()
     {
         guardPosition = parent.transform.position;
+        guardPosition.y += 0.417f;
 
-        Vector3 direction = (target.transform.position - guardPosition).normalized; //direction FROM guard towards player
+        direction = (target.transform.position - guardPosition).normalized; //direction FROM guard towards player
+
+       
         Ray g_ray = new Ray(guardPosition, direction);
         Debug.DrawRay(g_ray.origin, g_ray.direction * sightRange); //sightRange was 15
 
-        int layerMask = 1 << 3;
-        layerMask = ~layerMask;
-
-        if (Physics.Raycast(guardPosition, direction * sightRange, out hitThing, sightRange, layerMask))
+        if (Physics.Raycast(guardPosition, direction * sightRange, out hitThing, sightRange, hitLayers))
         {
+            
             string tag = hitThing.collider.tag;
             string name = hitThing.collider.gameObject.name;
+
+            //DebugSphere.transform.position = hitThing.collider.transform.position;
+
+
             //Debug.Log("Object = " + name + " tag = " + tag);
             if (hitThing.collider.tag != "PlayerBody")
             {
@@ -90,6 +110,11 @@ public class ViewZoneCheck : MonoBehaviour
                 Debug.Log("tag" + tag + "Object =" + name + " - HITTING PLAYER BODY!!");
                 inLOS = true;
             }
+        }
+        else
+        {
+            inLOS = false;
+            DebugSphere.transform.position =  Vector3.zero;
         }
     }
 }
