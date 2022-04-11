@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 161153632}
   - component: {fileID: 161153631}
   - component: {fileID: 161153630}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -231,7 +231,7 @@ GameObject:
   - component: {fileID: 164829973}
   - component: {fileID: 164829972}
   - component: {fileID: 164829971}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Cylinder (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -645,7 +645,7 @@ GameObject:
   - component: {fileID: 549077757}
   - component: {fileID: 549077756}
   - component: {fileID: 549077755}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Cylinder (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -994,6 +994,9 @@ MonoBehaviour:
   inLight: 0
   isVisible: 0
   lightRange: 15
+  hitLayers:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1001 &688236258
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1224,7 +1227,7 @@ GameObject:
   - component: {fileID: 782219210}
   - component: {fileID: 782219209}
   - component: {fileID: 782219208}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Cylinder (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1838,7 +1841,7 @@ GameObject:
   - component: {fileID: 1672102798}
   - component: {fileID: 1672102797}
   - component: {fileID: 1672102796}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Cylinder (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
