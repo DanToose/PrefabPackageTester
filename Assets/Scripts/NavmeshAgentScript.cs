@@ -21,7 +21,6 @@ public class NavmeshAgentScript : MonoBehaviour {
     public Vector3 guardPosition;
     private float diff;
     public float sightRange;
-    private RaycastHit hitThing;
     public bool inLoS;
     private bool hadChased;
     public Vector3 lastSeenAt;
@@ -30,11 +29,10 @@ public class NavmeshAgentScript : MonoBehaviour {
     bool isDebugLog = false;
 
     // This enemy uses an integer to flag the AI state:
-    // 0 = Stay still and look around
+
     // 1 = Head to the player and raycast to check LOS again
     // 2 = Head to player's last know location.
     // 3 = Patrol
-    // 4 = Check for LoS
 
     // Use this for initialization
     void Start () 
@@ -117,35 +115,3 @@ public class NavmeshAgentScript : MonoBehaviour {
         }
     }
 }
-
-/*       if (AIState == 4) // AI CHECK FOR LOS FOR SIGHTING
-       {
-           Vector3 direction = (target.transform.position - guardPosition).normalized; //direction FROM guard towards player
-           Ray g_ray = new Ray(guardPosition, direction);
-           Debug.DrawRay(g_ray.origin, g_ray.direction * sightRange); //sightRange was 15
-
-           int layerMask = 1 << 3;
-           layerMask = ~layerMask;
-
-           if (Physics.Raycast(guardPosition, direction * diff, out hitThing, layerMask))
-           {
-               string tag = hitThing.collider.tag;
-               string name = hitThing.collider.gameObject.name;
-               //Debug.Log("Object = " + name + " tag = " + tag);
-               if (hitThing.collider.tag != "PlayerBody")
-               {
-                   Debug.Log("tag" + tag + "Object =" + name + " Not hitting PlayerBody");
-                   inLoS = false;
-                   AIState = 3;
-               }
-               else
-               {
-                   inLoS = true;
-                   AIState = 1;
-                   //hadChased = true;
-                   //agent.SetDestination(target.position);
-                   lastSeenAt = target.transform.position;
-               }
-           }
-       }
-*/

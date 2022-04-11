@@ -18,9 +18,6 @@ public class ViewZoneCheck : MonoBehaviour
 
     public LayerMask hitLayers;
 
-    public GameObject DebugSphere;
- 
-
     
 
     // Start is called before the first frame update
@@ -96,10 +93,6 @@ public class ViewZoneCheck : MonoBehaviour
             string tag = hitThing.collider.tag;
             string name = hitThing.collider.gameObject.name;
 
-            //DebugSphere.transform.position = hitThing.collider.transform.position;
-
-
-            //Debug.Log("Object = " + name + " tag = " + tag);
             if (hitThing.collider.tag != "PlayerBody")
             {
                 Debug.Log("tag" + tag + "Object =" + name + " - Not hitting PlayerBody");
@@ -114,7 +107,6 @@ public class ViewZoneCheck : MonoBehaviour
         else
         {
             inLOS = false;
-            DebugSphere.transform.position =  Vector3.zero;
         }
     }
 }

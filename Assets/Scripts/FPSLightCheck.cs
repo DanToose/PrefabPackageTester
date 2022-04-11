@@ -18,6 +18,8 @@ public class FPSLightCheck : MonoBehaviour
     public float lightRange;
     private RaycastHit hitThing;
 
+    public LayerMask hitLayers;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,6 +28,8 @@ public class FPSLightCheck : MonoBehaviour
         isVisible = false;
 
         lightRange = 15;
+
+        hitLayers = LayerMask.GetMask("Player") | LayerMask.GetMask("Default") | LayerMask.GetMask("Environment");
     }
 
 
@@ -40,11 +44,11 @@ public class FPSLightCheck : MonoBehaviour
 
         if (isVisible == true)
         {
-            //Debug.Log("Player deemed in light now");
+            Debug.Log("Player deemed in light now");
         }
         else
         {
-            //Debug.Log("Player deemed in shadow now");
+            Debug.Log("Player deemed in shadow now");
         }
     }
 
@@ -91,7 +95,7 @@ public class FPSLightCheck : MonoBehaviour
                 {
                     Ray g_ray = new Ray(myPosition, direction);
                     Debug.DrawRay(g_ray.origin, g_ray.direction * 15);
-                     if (Physics.Raycast(myPosition, direction * diff, out hitThing))
+                     if (Physics.Raycast(myPosition, direction * diff, out hitThing, hitLayers))
                      {  
                         string tag = hitThing.collider.tag;
                         string name = hitThing.collider.gameObject.name;
