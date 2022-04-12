@@ -20,6 +20,26 @@ public class ViewZoneCheck : MonoBehaviour
         sightRange = parent.GetComponent<NavmeshAgentScript>().sightRange;
     }
 
+ /*   private void FixedUpdate()
+    {
+        if (parent.gameObject.GetComponent<NavmeshAgentScript>().AIState < 3)
+        {
+            RayCastCheck();
+
+            if (inLOS == true)
+            {
+                parent.gameObject.GetComponent<NavmeshAgentScript>().AIState = 1; // HEAD TOWARDS PLAYER
+            }
+            else
+            {
+                parent.gameObject.GetComponent<NavmeshAgentScript>().AIState = 2;
+            }
+            
+        }
+    }
+
+    */
+
     private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.tag == "PlayerBody")
@@ -45,6 +65,8 @@ public class ViewZoneCheck : MonoBehaviour
             {
                 parent.gameObject.GetComponent<NavmeshAgentScript>().AIState = 2;
             }
+
+
         }
     }
 

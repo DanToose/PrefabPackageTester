@@ -63,12 +63,12 @@ public class NavmeshAgentScript : MonoBehaviour
         if (AIState == 2) // HEAD TO LAST PLACE PLAYER WAS SEEN 
         {
             seenDist = Vector3.Distance(lastSeenAt, guardPosition);
-            if (seenDist > 0.1)
+            if (seenDist > 0.3)
             {
                 agent.SetDestination(lastSeenAt);
                 //Debug.Log("lastSeenAt = " + lastSeenAt + " seenDist = " + seenDist);
             }
-            else if (seenDist <= 0.1)
+            else if (seenDist <= 0.3)
             {
                 Invoke("DelayedSwitch", delay);
                 seenDist = 100;
