@@ -20,8 +20,8 @@ public class ViewZoneCheck : MonoBehaviour
         sightRange = parent.GetComponent<NavmeshAgentScript>().sightRange;
     }
 
- /*   private void FixedUpdate()
-    {
+   private void FixedUpdate()
+   {
         if (parent.gameObject.GetComponent<NavmeshAgentScript>().AIState < 3)
         {
             RayCastCheck();
@@ -33,12 +33,10 @@ public class ViewZoneCheck : MonoBehaviour
             else
             {
                 parent.gameObject.GetComponent<NavmeshAgentScript>().AIState = 2;
-            }
-            
+            }            
         }
     }
-
-    */
+   
 
     private void OnTriggerStay(Collider other)
     {
@@ -65,8 +63,6 @@ public class ViewZoneCheck : MonoBehaviour
             {
                 parent.gameObject.GetComponent<NavmeshAgentScript>().AIState = 2;
             }
-
-
         }
     }
 
