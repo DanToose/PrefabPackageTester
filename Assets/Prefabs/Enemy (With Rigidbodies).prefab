@@ -140,9 +140,12 @@ MonoBehaviour:
   patrolTarget3: {fileID: 0}
   patrolTarget4: {fileID: 0}
   waypoints: []
-  AIState: 0
-  sightRange: 0
+  AIState: 3
+  guardPosition: {x: 0, y: 0, z: 0}
+  sightRange: 50
   inLoS: 0
+  lastSeenAt: {x: 0, y: 0, z: 0}
+  delay: 3
 --- !u!54 &3865307284308208298
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -172,7 +175,7 @@ GameObject:
   - component: {fileID: 9156794174766292639}
   - component: {fileID: 6276849294854623102}
   - component: {fileID: 4665110216957378408}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -268,3 +271,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parent: {fileID: 3865307284308208301}
+  guardPosition: {x: 0, y: 0, z: 0}
+  target: {fileID: 0}
+  inLOS: 0
+  direction: {x: 0, y: 0, z: 0}
+  hitLayers:
+    serializedVersion: 2
+    m_Bits: 2305

@@ -5,34 +5,19 @@ using UnityEngine;
 public class ViewZoneCheck : MonoBehaviour
 {
     public GameObject parent;
-
     public Vector3 guardPosition;
     public Transform target;
     private float sightRange;
     private RaycastHit hitThing;
     public bool inLOS = false;
-    public bool hasBeenInLOS = false;
-    private NavmeshAgentScript parentObject;
-
     public Vector3 direction;
-
     public LayerMask hitLayers;
 
-    
-
-    // Start is called before the first frame update
     void Start()
     {
         hitLayers = LayerMask.GetMask("Player") | LayerMask.GetMask("Default") | LayerMask.GetMask("Environment");
-        target = GameObject.FindGameObjectWithTag("Player").transform;
+        target = GameObject.FindGameObjectWithTag("PlayerBody").transform;
         sightRange = parent.GetComponent<NavmeshAgentScript>().sightRange;
-        parentObject = parent.GetComponent<NavmeshAgentScript>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     private void OnTriggerStay(Collider other)
@@ -44,15 +29,7 @@ public class ViewZoneCheck : MonoBehaviour
 
             if (inLOS == true)
             {
-                hasBeenInLOS = true;
                 parent.gameObject.GetComponent<NavmeshAgentScript>().AIState = 1; // HEAD TOWARDS PLAYER
-
-            }
-            else if(hasBeenInLOS)
-            {
-                hasBeenInLOS = false;
-                parent.gameObject.GetComponent<NavmeshAgentScript>().AIState = 2; // HEAD TO LAST PLAYER SEEN
-                parentObject.lastSeenAt = target.transform.position;
             }
         }
     }
@@ -63,44 +40,31 @@ public class ViewZoneCheck : MonoBehaviour
         {
             Debug.Log("Player left enemy view zone");
             inLOS = false;
-            hasBeenInLOS = false;
 
             if (parent.gameObject.GetComponent<NavmeshAgentScript>().AIState == 1)
             {
                 parent.gameObject.GetComponent<NavmeshAgentScript>().AIState = 2;
             }
-/*            else
-            {
-                parent.gameObject.GetComponent<NavmeshAgentScript>().AIState = 3;
-            } */
         }
     }
 
     private void RayCastCheck()
     {
         guardPosition = parent.transform.position;
-        guardPosition.y += 0.417f;
+        guardPosition.y = 0.417f;
 
-        direction = (target.transform.position - guardPosition).normalized; //direction FROM guard towards player
-
-       
+        direction = (target.transform.position - guardPosition).normalized; //direction FROM guard towards player    
         Ray g_ray = new Ray(guardPosition, direction);
-        Debug.DrawRay(g_ray.origin, g_ray.direction * sightRange); //sightRange was 15
+        Debug.DrawRay(g_ray.origin, g_ray.direction * sightRange);
 
         if (Physics.Raycast(guardPosition, direction * sightRange, out hitThing, sightRange, hitLayers))
         {
-            
-            string tag = hitThing.collider.tag;
-            string name = hitThing.collider.gameObject.name;
-
             if (hitThing.collider.tag != "PlayerBody")
             {
-                Debug.Log("tag" + tag + "Object =" + name + " - Not hitting PlayerBody");
                 inLOS = false;
             }
             else
             {
-                Debug.Log("tag" + tag + "Object =" + name + " - HITTING PLAYER BODY!!");
                 inLOS = true;
             }
         }

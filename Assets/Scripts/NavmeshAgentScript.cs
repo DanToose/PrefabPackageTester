@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class NavmeshAgentScript : MonoBehaviour {
+public class NavmeshAgentScript : MonoBehaviour
+{
 
     public Transform target;
     NavMeshAgent agent;
@@ -19,14 +20,11 @@ public class NavmeshAgentScript : MonoBehaviour {
     public int AIState;
 
     public Vector3 guardPosition;
-    private float diff;
     public float sightRange;
-    public bool inLoS;
+    public bool inLoS; // NOT USED? Delete?
     private bool hadChased;
     public Vector3 lastSeenAt;
     public float delay = 3f;
-
-    bool isDebugLog = false;
 
     // This enemy uses an integer to flag the AI state:
 
@@ -34,11 +32,10 @@ public class NavmeshAgentScript : MonoBehaviour {
     // 2 = Head to player's last know location.
     // 3 = Patrol
 
-    // Use this for initialization
-    void Start () 
+    void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-        target = GameObject.FindGameObjectWithTag("Player").transform;
+        target = GameObject.FindGameObjectWithTag("PlayerBody").transform;
         PatrolPoint = 0;
         waypoints.Add(patrolTarget1);
         waypoints.Add(patrolTarget2);
@@ -48,53 +45,37 @@ public class NavmeshAgentScript : MonoBehaviour {
 
     void DelayedSwitch()
     {
+        // This returns the guard to its patrol.
         AIState = 3;
-
     }
 
     // Update is called once per frame
-    void Update () 
+    void Update()
     {
-        if(isDebugLog)
-            Debug.Log(AIState);
-
         guardPosition = transform.position;
 
         if (AIState == 1)
         {
-            float diff = Vector3.Distance(guardPosition, target.transform.position);
-            if (diff <= sightRange)  // if the player is within the guard's maximum vision range
-            {
-                agent.SetDestination(target.position);
-                lastSeenAt = target.transform.position;
-
-                //hadChased = true;
-            }
-            else
-            {
-                //AIState = 2;
-            }
+            agent.SetDestination(target.position);
+            lastSeenAt = target.transform.position;
         }
 
-        if (AIState == 2) // HEAD TO LAST PLACE PLAYER WAS SEEN
+        if (AIState == 2) // HEAD TO LAST PLACE PLAYER WAS SEEN 
         {
-
-            //dist = Vector3.Distance(lastSeenAt, transform.position);
             seenDist = Vector3.Distance(lastSeenAt, guardPosition);
             if (seenDist > 0.1)
             {
                 agent.SetDestination(lastSeenAt);
-                Invoke("DelayedSwitch", delay);
+                //Debug.Log("lastSeenAt = " + lastSeenAt + " seenDist = " + seenDist);
             }
             else if (seenDist <= 0.1)
             {
-                //hadChased = false;
-                AIState = 3;
+                Invoke("DelayedSwitch", delay);
                 seenDist = 100;
             }
         }
-            
-        if (AIState == 3) // ON PATROL
+
+        if (AIState == 3) // ON PATROL -- THIS ALL WORKS AS DESIRED. 
         {
             currentDestination = waypoints[PatrolPoint].transform;
             dist = Vector3.Distance(currentDestination.position, transform.position);
