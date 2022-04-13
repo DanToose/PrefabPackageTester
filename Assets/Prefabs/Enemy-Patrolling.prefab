@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 3865307284308208299}
   - component: {fileID: 3865307284308208298}
   m_Layer: 0
-  m_Name: Enemy (With Rigidbodies)
+  m_Name: Enemy-Patrolling
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -141,6 +141,8 @@ MonoBehaviour:
   patrolTarget4: {fileID: 0}
   waypoints: []
   AIState: 3
+  patrolSpeed: 5
+  chaseSpeed: 9
   guardPosition: {x: 0, y: 0, z: 0}
   sightRange: 50
   inLoS: 0
@@ -176,7 +178,7 @@ GameObject:
   - component: {fileID: 6276849294854623102}
   - component: {fileID: 4665110216957378408}
   m_Layer: 10
-  m_Name: Cube
+  m_Name: Viewzone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

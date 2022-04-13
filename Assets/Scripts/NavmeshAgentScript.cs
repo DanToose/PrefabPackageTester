@@ -19,6 +19,9 @@ public class NavmeshAgentScript : MonoBehaviour
     private float seenDist;
     public int AIState;
 
+    public float patrolSpeed;
+    public float chaseSpeed;
+
     public Vector3 guardPosition;
     public float sightRange;
     public bool inLoS; // NOT USED? Delete?
@@ -56,12 +59,14 @@ public class NavmeshAgentScript : MonoBehaviour
 
         if (AIState == 1)
         {
+            agent.speed = chaseSpeed;
             agent.SetDestination(target.position);
             lastSeenAt = target.transform.position;
         }
 
         if (AIState == 2) // HEAD TO LAST PLACE PLAYER WAS SEEN 
         {
+            agent.speed = chaseSpeed;
             seenDist = Vector3.Distance(lastSeenAt, guardPosition);
             if (seenDist > 0.3)
             {
@@ -77,6 +82,7 @@ public class NavmeshAgentScript : MonoBehaviour
 
         if (AIState == 3) // ON PATROL -- THIS ALL WORKS AS DESIRED. 
         {
+            agent.speed = patrolSpeed;
             currentDestination = waypoints[PatrolPoint].transform;
             dist = Vector3.Distance(currentDestination.position, transform.position);
 
