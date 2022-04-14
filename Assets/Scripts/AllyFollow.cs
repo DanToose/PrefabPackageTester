@@ -6,9 +6,10 @@ using UnityEngine.AI;
 public class AllyFollow : MonoBehaviour
 {
     public bool followingPlayer;
-//  public bool toggleState = false;
     public Transform target;
+    private Transform selfLocation;
     NavMeshAgent agent;
+    public float followProximity;
 
 
     // Start is called before the first frame update
@@ -16,7 +17,8 @@ public class AllyFollow : MonoBehaviour
     {
         followingPlayer = false;
         agent = GetComponent<NavMeshAgent>();
-        //target = GameObject.FindGameObjectWithTag("Player").transform;
+        target = GameObject.FindGameObjectWithTag("Player").transform;
+        followProximity = 3.0f;
     }
 
     public void followPlayerToggle()
@@ -35,10 +37,19 @@ public class AllyFollow : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        float diff = Vector3.Distance(target.transform.position, gameObject.transform.position); //distance from ally to player
+        selfLocation = gameObject.transform;
         if (followingPlayer == true)
         {
-            //Debug.Log("Ally destination set");
-            agent.SetDestination(target.position);
+            if (diff > followProximity)
+            {
+                //Debug.Log("Ally destination set");
+                agent.SetDestination(target.position);
+            }
+            else
+            {
+                agent.SetDestination(selfLocation.position);
+            }
         }
     }
 
