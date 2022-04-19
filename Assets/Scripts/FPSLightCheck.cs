@@ -42,14 +42,14 @@ public class FPSLightCheck : MonoBehaviour
             AuditLights();
         }
 
-        if (isVisible == true)
+ /*       if (isVisible == true)
         {
             Debug.Log("Player deemed in light now");
         }
         else
         {
             Debug.Log("Player deemed in shadow now");
-        }
+        } */
     }
 
     private void OnTriggerEnter(Collider other)

@@ -7,12 +7,15 @@ public class EnemyAttack : MonoBehaviour
     public bool instaDeathAttacker;
     public float attackRate;
     public float damageMulitplier = 1.0f;
+    public float timer;
+    public GameObject player;
+    public float health;
 
     
     // Start is called before the first frame update
     void Start()
     {
-        attackRate = 0.05;
+        attackRate = 0.05f;
     }
 
     // Update is called once per frame
@@ -31,11 +34,13 @@ public class EnemyAttack : MonoBehaviour
             }
             else
             {
+                health = other.gameObject.GetComponent<PlayerHealth>().playerHealth;
+
                 timer = timer + Time.deltaTime;
 
                 if (timer >= attackRate)
                 {
-                    health = health - 1 * damageMultiplier;
+                    other.gameObject.GetComponent<PlayerHealth>().playerHealth = health - 1 * damageMulitplier;
                     timer = 0.0f;
                 }
             }

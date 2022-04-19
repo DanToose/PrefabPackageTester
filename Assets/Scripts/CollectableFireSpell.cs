@@ -9,17 +9,20 @@ public class CollectableFireSpell : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        PlayerEntity = GameObject.FindGameObjectWithTag("Player");
         if (PlayerEntity == null)
         {
             Debug.Log("WARNING - No Player assigned for Collectable Fire Spell!");
         }
     }
 
-    private void OnCollisionEnter(Collision other)
+    private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "PlayerBody")
+        if (other.gameObject.tag == "Player")
         {
-            PlayerEntity.GetComponent<PlayerInventory>().fireSpellCount = +1;
+            //Debug.Log("COLLISION WITH Fire Spell!");
+            PlayerEntity.GetComponent<PlayerInventory>().AddSpell();
+            Destroy(gameObject);
         }
     }
 }

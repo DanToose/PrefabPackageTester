@@ -2,17 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CollectablePlank : MonoBehaviour
+public class CollectableHealing : MonoBehaviour
 {
     public GameObject PlayerEntity;
-    
+
     // Start is called before the first frame update
     void Start()
     {
         PlayerEntity = GameObject.FindGameObjectWithTag("Player");
         if (PlayerEntity == null)
         {
-            Debug.Log("WARNING - No Player assigned for Collectable Plank!");
+            Debug.Log("WARNING - No Player assigned for Collectable Healing!");
         }
     }
 
@@ -22,7 +22,7 @@ public class CollectablePlank : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             //Debug.Log("COLLISION WITH Plank!");
-            PlayerEntity.GetComponent<PlayerInventory>().AddPlank();
+            PlayerEntity.GetComponent<PlayerInventory>().AddHealing();
             Destroy(gameObject);
         }
     }
