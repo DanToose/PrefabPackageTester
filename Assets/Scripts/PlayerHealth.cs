@@ -27,6 +27,7 @@ public class PlayerHealth : MonoBehaviour
 
             if (playerHealth <= 0)
             {
+                playerHealth = 0;
                 playerDeath();
             }
         }
@@ -43,5 +44,6 @@ public class PlayerHealth : MonoBehaviour
     void RespawnFromDeath()
     {
         respawn.RespawnPlayer();
+        playerHealth = playerMaxHealth;
     }
 }

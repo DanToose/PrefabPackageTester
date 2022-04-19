@@ -7,7 +7,7 @@ public class EnemyAttack : MonoBehaviour
     public bool instaDeathAttacker;
     public float attackRate;
     public float damageMulitplier = 1.0f;
-    public float timer;
+    private float timer;
     public GameObject player;
     public float health;
 

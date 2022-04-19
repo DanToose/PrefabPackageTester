@@ -4,14 +4,18 @@ using UnityEngine;
 
 public class CheckPoint : MonoBehaviour
 {
-    //public bool isCheckpoint;
+    public bool isStartpoint;
     public GameObject player;
-    //private Transform thisPoint;
+    private Transform thisPoint;
 
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        if (isStartpoint)
+        {
+            thisPoint.transform.position = player.gameObject.transform.position;
+        }
         //thisPoint = gameObject.transform;
     }
 

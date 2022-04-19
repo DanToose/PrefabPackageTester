@@ -10,6 +10,7 @@ TagManager:
   - Interact
   - Environment
   - PlayerBody
+  - StartPoint
   layers:
   - Default
   - TransparentFX
