@@ -21,6 +21,8 @@ public class FPSLightCheck : MonoBehaviour
     public LayerMask hitLayers;
 
     public bool ignoresLightCheck;
+    public bool useHUDvignette;
+    public GameObject HUDvignette;
 
     // Start is called before the first frame update
     void Start()
@@ -49,14 +51,21 @@ public class FPSLightCheck : MonoBehaviour
             AuditLights();
         }
 
- /*       if (isVisible == true)
+        if (useHUDvignette == true)
         {
-            Debug.Log("Player deemed in light now");
+            if (isVisible == true)
+            {
+
+                HUDvignette.gameObject.SetActive(true);
+                    //Debug.Log("Player deemed in light now");
+            }
+            else
+            {
+                HUDvignette.gameObject.SetActive(false);
+                //Debug.Log("Player deemed in shadow now");
+            }
         }
-        else
-        {
-            Debug.Log("Player deemed in shadow now");
-        }*/
+
     }
 
     private void OnTriggerEnter(Collider other)

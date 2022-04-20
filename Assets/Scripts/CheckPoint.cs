@@ -27,10 +27,6 @@ public class CheckPoint : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        //Debug.Log("Something hit a checkpoint");
-        //string tag = other.tag;
-        //string name = other.gameObject.name;
-        //Debug.Log("Checkpoint collided with - Tag " + tag + " Object =" +name);
         if (other.gameObject.tag == "Player")
         {
             //Debug.Log("And that something was da Playa!");
@@ -39,7 +35,6 @@ public class CheckPoint : MonoBehaviour
             
             isCheckpoint = true;
             player.gameObject.GetComponent<Respawner>().currentCheckpoint = gameObject;
-            //respawn.currentCheckpoint = gameObject;
 
             respawn.UpdateCheckPoints();
 
