@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: SpawnZone
+  m_Name: SpawnZoneActive
   m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: _ALPHAPREMULTIPLY_ON _EMISSION _GLOSSYREFLECTIONS_OFF _SPECULARHIGHLIGHTS_OFF
   m_LightmapFlags: 1
@@ -74,6 +74,6 @@ Material:
     - _UVSec: 0
     - _ZWrite: 0
     m_Colors:
-    - _Color: {r: 0.954007, g: 0.9622642, b: 0.18609825, a: 0.18431373}
-    - _EmissionColor: {r: 0.94494104, g: 0.9622642, b: 0.049928807, a: 1}
+    - _Color: {r: 0.98617667, g: 0.990566, b: 0.27058825, a: 0.0627451}
+    - _EmissionColor: {r: 1.6455113, g: 1.6728227, b: 0.08876202, a: 1}
   m_BuildTextureStacks: []

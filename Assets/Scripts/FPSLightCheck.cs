@@ -49,7 +49,7 @@ public class FPSLightCheck : MonoBehaviour
         else
         {
             Debug.Log("Player deemed in shadow now");
-        } */
+        }*/
     }
 
     private void OnTriggerEnter(Collider other)

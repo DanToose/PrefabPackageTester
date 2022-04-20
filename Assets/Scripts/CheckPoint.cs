@@ -5,18 +5,18 @@ using UnityEngine;
 public class CheckPoint : MonoBehaviour
 {
     public bool isStartpoint;
+    public bool isCheckpoint;
     public GameObject player;
-    private Transform thisPoint;
+    //private Transform thisPoint;
+    public GameObject oldCheckpoint;
+    public Respawner respawn;
 
     // Start is called before the first frame update
     void Start()
     {
+        isCheckpoint = false;
         player = GameObject.FindGameObjectWithTag("Player");
-        if (isStartpoint)
-        {
-            thisPoint.transform.position = player.gameObject.transform.position;
-        }
-        //thisPoint = gameObject.transform;
+        respawn = player.GetComponent<Respawner>();
     }
 
     // Update is called once per frame
@@ -27,10 +27,22 @@ public class CheckPoint : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        //Debug.Log("Something hit a checkpoint");
+        //string tag = other.tag;
+        //string name = other.gameObject.name;
+        //Debug.Log("Checkpoint collided with - Tag " + tag + " Object =" +name);
         if (other.gameObject.tag == "Player")
         {
-            //isCheckpoint = true;
+            //Debug.Log("And that something was da Playa!");
+            oldCheckpoint = player.gameObject.GetComponent<Respawner>().currentCheckpoint;
+            oldCheckpoint.GetComponent<CheckPoint>().isCheckpoint = false;
+            
+            isCheckpoint = true;
             player.gameObject.GetComponent<Respawner>().currentCheckpoint = gameObject;
+            //respawn.currentCheckpoint = gameObject;
+
+            respawn.UpdateCheckPoints();
+
         }
     }
 }
