@@ -20,6 +20,8 @@ public class FPSLightCheck : MonoBehaviour
 
     public LayerMask hitLayers;
 
+    public bool ignoresLightCheck;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -30,6 +32,11 @@ public class FPSLightCheck : MonoBehaviour
         lightRange = 15;
 
         hitLayers = LayerMask.GetMask("Player") | LayerMask.GetMask("Default") | LayerMask.GetMask("Environment");
+
+        if (ignoresLightCheck == true)
+        {
+            isVisible = true;
+        }
     }
 
 
@@ -37,7 +44,7 @@ public class FPSLightCheck : MonoBehaviour
     {
         myPosition = transform.position;
 
-        if (nearLight == true)
+        if (nearLight == true && ignoresLightCheck == false)
         {
             AuditLights();
         }
