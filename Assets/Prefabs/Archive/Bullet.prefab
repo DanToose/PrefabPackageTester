@@ -59,6 +59,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -83,6 +84,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!135 &2630344891008020911
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -109,8 +111,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletSpeed: 50
-  splatEffect: {fileID: 533730454786828092, guid: 5a3742977334a46d599dcfe23972eb46,
-    type: 3}
+  splatEffect: {fileID: 533730454786828092, guid: 5a3742977334a46d599dcfe23972eb46, type: 3}
 --- !u!54 &-9160384625629955900
 Rigidbody:
   m_ObjectHideFlags: 0

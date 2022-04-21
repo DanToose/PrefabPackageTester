@@ -2316,6 +2316,10 @@ PrefabInstance:
       propertyPath: patrolTarget4
       value: 
       objectReference: {fileID: 1339748238}
+    - target: {fileID: 1857893532508296041, guid: e4bea1915735ee745a456835b1ab83f5, type: 3}
+      propertyPath: m_UseGravity
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1857893532508296043, guid: e4bea1915735ee745a456835b1ab83f5, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -2368,6 +2372,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 423078259}
+    - target: {fileID: 3201149136487089538, guid: e4bea1915735ee745a456835b1ab83f5, type: 3}
+      propertyPath: m_ReceiveShadows
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e4bea1915735ee745a456835b1ab83f5, type: 3}
 --- !u!1001 &4162255178267313922
@@ -2570,6 +2578,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 832311920114161274, guid: 5b6e572be18ca3043b1763317bbb84d6, type: 3}
+      propertyPath: m_ReceiveShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 832311921420299153, guid: 5b6e572be18ca3043b1763317bbb84d6, type: 3}
       propertyPath: m_Name
       value: _CHARACTER
