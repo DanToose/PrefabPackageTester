@@ -28,6 +28,7 @@ public class NavmeshAgentScript : MonoBehaviour
     private bool hadChased;
     public Vector3 lastSeenAt;
     public float delay = 3f;
+    public float patrolCheckRange;
 
     // This enemy uses an integer to flag the AI state:
 
@@ -44,6 +45,7 @@ public class NavmeshAgentScript : MonoBehaviour
         waypoints.Add(patrolTarget2);
         waypoints.Add(patrolTarget3);
         waypoints.Add(patrolTarget4);
+        patrolCheckRange = 0.5f;
     }
 
     void DelayedSwitch()
@@ -86,16 +88,16 @@ public class NavmeshAgentScript : MonoBehaviour
             currentDestination = waypoints[PatrolPoint].transform;
             dist = Vector3.Distance(currentDestination.position, transform.position);
 
-            if (dist > 0.2)
+            if (dist > patrolCheckRange)
             {
                 agent.SetDestination(currentDestination.position);
             }
-            else if (dist <= 0.2 && PatrolPoint == 3)
+            else if (dist <= patrolCheckRange && PatrolPoint == 3)
             {
                 PatrolPoint = 0;
             }
 
-            else if (dist <= 0.2 && PatrolPoint < 3)
+            else if (dist <= patrolCheckRange && PatrolPoint < 3)
             {
                 PatrolPoint++;
             }
