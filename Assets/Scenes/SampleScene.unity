@@ -2871,6 +2871,26 @@ PrefabInstance:
       propertyPath: patrolTarget4
       value: 
       objectReference: {fileID: 1339748238}
+    - target: {fileID: 1857893532508296040, guid: e4bea1915735ee745a456835b1ab83f5, type: 3}
+      propertyPath: wayPoints.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1857893532508296040, guid: e4bea1915735ee745a456835b1ab83f5, type: 3}
+      propertyPath: wayPoints.Array.data[0]
+      value: 
+      objectReference: {fileID: 431674017}
+    - target: {fileID: 1857893532508296040, guid: e4bea1915735ee745a456835b1ab83f5, type: 3}
+      propertyPath: wayPoints.Array.data[1]
+      value: 
+      objectReference: {fileID: 1558798379}
+    - target: {fileID: 1857893532508296040, guid: e4bea1915735ee745a456835b1ab83f5, type: 3}
+      propertyPath: wayPoints.Array.data[2]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1857893532508296040, guid: e4bea1915735ee745a456835b1ab83f5, type: 3}
+      propertyPath: wayPoints.Array.data[3]
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 1857893532508296041, guid: e4bea1915735ee745a456835b1ab83f5, type: 3}
       propertyPath: m_UseGravity
       value: 0

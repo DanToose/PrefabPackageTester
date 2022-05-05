@@ -8,13 +8,11 @@ public class NavmeshAgentScript : MonoBehaviour
 
     public Transform target;
     NavMeshAgent agent;
-    public GameObject patrolTarget1;
-    public GameObject patrolTarget2;
-    public GameObject patrolTarget3;
-    public GameObject patrolTarget4;
-    public List<GameObject> waypoints;
+    public GameObject[] wayPoints;
+
     private Transform currentDestination;
     private int PatrolPoint;
+    private int PatrolPointCount;
     private float dist;
     private float seenDist;
     public int AIState;
@@ -41,10 +39,7 @@ public class NavmeshAgentScript : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         target = GameObject.FindGameObjectWithTag("PlayerBody").transform;
         PatrolPoint = 0;
-        waypoints.Add(patrolTarget1);
-        waypoints.Add(patrolTarget2);
-        waypoints.Add(patrolTarget3);
-        waypoints.Add(patrolTarget4);
+        PatrolPointCount = wayPoints.Length;
         patrolCheckRange = 0.5f;
     }
 
@@ -85,21 +80,23 @@ public class NavmeshAgentScript : MonoBehaviour
         if (AIState == 3) // ON PATROL -- THIS ALL WORKS AS DESIRED. 
         {
             agent.speed = patrolSpeed;
-            currentDestination = waypoints[PatrolPoint].transform;
+            currentDestination = wayPoints[PatrolPoint].transform;
             dist = Vector3.Distance(currentDestination.position, transform.position);
+            Debug.Log(PatrolPointCount);
 
             if (dist > patrolCheckRange)
             {
                 agent.SetDestination(currentDestination.position);
             }
-            else if (dist <= patrolCheckRange && PatrolPoint == 3)
+            else if (dist <= patrolCheckRange && PatrolPoint == (PatrolPointCount - 1))
             {
                 PatrolPoint = 0;
             }
 
-            else if (dist <= patrolCheckRange && PatrolPoint < 3)
+            else if (dist <= patrolCheckRange && PatrolPoint < (PatrolPointCount - 1))
             {
                 PatrolPoint++;
+                
             }
         }
     }
