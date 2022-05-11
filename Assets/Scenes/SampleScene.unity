@@ -1468,7 +1468,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1103965127
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1521,7 +1521,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Got the hallelujahs!
+  m_Text: Get the hallelujahs!
 --- !u!222 &1103965129
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2992,6 +2992,14 @@ PrefabInstance:
       propertyPath: textField
       value: 
       objectReference: {fileID: 1531113734}
+    - target: {fileID: 644669483940181452, guid: f1292562f5572014194b35a1b7dbb945, type: 3}
+      propertyPath: popupTexts.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 644669483940181452, guid: f1292562f5572014194b35a1b7dbb945, type: 3}
+      propertyPath: popupTexts.Array.data[3]
+      value: Jess is totes amazing <3
+      objectReference: {fileID: 0}
     - target: {fileID: 644669483940181459, guid: f1292562f5572014194b35a1b7dbb945, type: 3}
       propertyPath: m_Size.x
       value: 2.6818738
@@ -3121,6 +3129,10 @@ PrefabInstance:
     - target: {fileID: 2758599870745008809, guid: 83a8a6b9fb25f444da46c76030571b9a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2900504942237988921, guid: 83a8a6b9fb25f444da46c76030571b9a, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -62.80005
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 83a8a6b9fb25f444da46c76030571b9a, type: 3}
@@ -3393,6 +3405,14 @@ PrefabInstance:
       propertyPath: HUDvignette
       value: 
       objectReference: {fileID: 1080405403540005053}
+    - target: {fileID: 7406798227573241113, guid: cb6070a36931b6346842fa30dd21e5e0, type: 3}
+      propertyPath: useHUDvignette
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7406798227573241113, guid: cb6070a36931b6346842fa30dd21e5e0, type: 3}
+      propertyPath: ignoresLightCheck
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cb6070a36931b6346842fa30dd21e5e0, type: 3}
 --- !u!1001 &4657141492757047127
