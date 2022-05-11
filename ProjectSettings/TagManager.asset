@@ -12,6 +12,7 @@ TagManager:
   - PlayerBody
   - StartPoint
   - CheckPoint
+  - GameManager
   layers:
   - Default
   - TransparentFX
