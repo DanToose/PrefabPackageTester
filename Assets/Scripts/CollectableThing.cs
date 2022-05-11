@@ -28,8 +28,7 @@ public class CollectableThing : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            StaticVariables._instance.dictionaryObjectivesSet[objectiveKey] = true;
-            StaticVariables._instance.UpdateList();
+            StaticVariables._instance.UpdateObjective(objectiveKey, true); // change true tp 'objectiveValue' if you want to allow unsetting
 
             if (showOnHud)
             {

@@ -35,7 +35,7 @@ public class StaticVariables : MonoBehaviour
 
     // Update is called once per frame
     
-    public void UpdateList()
+    private void UpdateList()
     {
         foreach (KeyValuePair<string, bool> dictionaryObj in _instance.dictionaryObjectivesSet)
         {
@@ -49,6 +49,13 @@ public class StaticVariables : MonoBehaviour
             }
         }
     }
+    
+    public void UpdateObjective (string key, bool value)
+    {
+        _instance.dictionaryObjectivesSet[key] = value;
+        UpdateList();
+    }
+    
     void Update()
     {
 
