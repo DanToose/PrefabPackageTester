@@ -393,6 +393,18 @@ MonoBehaviour:
   m_Text: 'Health: Not Upating
 
 '
+--- !u!114 &4527328346042428470
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2758599870745008805}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 781cab92340276141a74b823214a1a9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &4109877674855344422
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -514,6 +526,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3ca8eb14f33b9b14cbe7ce9226d4f85f, type: 3}
+--- !u!1 &2758599870745008805 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2252279265670099843, guid: 3ca8eb14f33b9b14cbe7ce9226d4f85f, type: 3}
+  m_PrefabInstance: {fileID: 4109877674855344422}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &2758599870745008809 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2252279265670099855, guid: 3ca8eb14f33b9b14cbe7ce9226d4f85f, type: 3}

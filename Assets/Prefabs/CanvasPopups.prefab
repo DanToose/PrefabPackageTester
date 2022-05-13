@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7118015299777360492}
   - component: {fileID: 7118015299777360483}
   - component: {fileID: 7118015299777360482}
+  - component: {fileID: 8629163969185587511}
   m_Layer: 5
   m_Name: CanvasPopups
   m_TagString: Untagged
@@ -101,6 +102,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &8629163969185587511
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7118015299777360480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 781cab92340276141a74b823214a1a9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7118015300654596882
 GameObject:
   m_ObjectHideFlags: 0

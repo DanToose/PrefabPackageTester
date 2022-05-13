@@ -25,6 +25,7 @@ public class FPSInteraction : MonoBehaviour
         rayHit = false;
         nearAlly = false;
         canInteract = false;
+        CrosshairDot = GameObject.Find("CrosshairDot").GetComponent<Image>();
     }
 
     // Update is called once per frame

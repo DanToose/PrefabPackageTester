@@ -26,6 +26,7 @@ public class BasicInteract : MonoBehaviour
         rayHit = false;
         canInteract = false;
         numberInteractables = 0;
+        CrosshairDot = GameObject.Find("CrosshairDot").GetComponent<Image>();
     }
 
     // Update is called once per frame

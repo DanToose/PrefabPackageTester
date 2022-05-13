@@ -17,6 +17,7 @@ public class PlayerHealth : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        healthText = GameObject.Find("Health").GetComponent<Text>();
         playerHealth = playerMaxHealth;
         healthText.text = "Health: " + playerHealth;
         //currentCheckpoint = GameObject.FindGameObjectWithTag("StartPoint");

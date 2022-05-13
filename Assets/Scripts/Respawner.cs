@@ -18,13 +18,14 @@ public class Respawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        DontDestroyOnLoad(this.gameObject);
         player = GameObject.FindGameObjectWithTag("Player");
         startingPoint = GameObject.FindGameObjectWithTag("StartPoint");
         currentCheckpoint = startingPoint;
 
         CPList.AddRange(GameObject.FindGameObjectsWithTag("CheckPoint"));
 
-        player.transform.position = startingPoint.transform.position;
+        InitialSpawn();
     }
 
     // Update is called once per frame
@@ -33,6 +34,10 @@ public class Respawner : MonoBehaviour
         
     }
 
+    private void InitialSpawn()
+    {
+        player.gameObject.transform.position = startingPoint.gameObject.transform.position;
+    }
 
     public void RespawnPlayer()
     {
