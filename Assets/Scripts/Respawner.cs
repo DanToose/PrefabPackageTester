@@ -21,6 +21,11 @@ public class Respawner : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
         player = GameObject.FindGameObjectWithTag("Player");
         startingPoint = GameObject.FindGameObjectWithTag("StartPoint");
+        if (currentCheckpoint == null)
+        {
+            startingPoint = GameObject.FindGameObjectWithTag("StartPoint");
+            currentCheckpoint = startingPoint;
+        }
         currentCheckpoint = startingPoint;
 
         CPList.AddRange(GameObject.FindGameObjectsWithTag("CheckPoint"));
@@ -36,6 +41,7 @@ public class Respawner : MonoBehaviour
 
     private void InitialSpawn()
     {
+        Debug.Log("St: " + startingPoint);
         player.gameObject.transform.position = startingPoint.gameObject.transform.position;
     }
 

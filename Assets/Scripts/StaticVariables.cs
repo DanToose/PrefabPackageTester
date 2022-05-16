@@ -2,12 +2,16 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 [Serializable]
 public class Objective
 {
     public string key;
     public bool value;
+    public string HUDtype;
+    public Text HUDtext;
+    public Image HUDimage;
 }
 public class StaticVariables : MonoBehaviour
 {
@@ -26,6 +30,8 @@ public class StaticVariables : MonoBehaviour
         {
             DontDestroyOnLoad(this.gameObject);
         }
+    
+
 
         foreach (Objective obj in objectiveSet)
         {

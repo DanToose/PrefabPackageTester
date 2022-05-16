@@ -15,7 +15,10 @@ public class CollectableThing : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        if (HUDText == null)
+        {
+            HUDText = GameObject.Find("Text").GetComponent<Text>();
+        }
     }
 
     // Update is called once per frame

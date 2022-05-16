@@ -18,7 +18,7 @@ public class TextPopup : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        textFieldObject = GameObject.Find("Text");
+        textFieldObject = GameObject.Find("CanvasPopups/Text");
         textField = textFieldObject.GetComponent<Text>();
         initialMessage = textField.text;
         fieldIsActive = false;

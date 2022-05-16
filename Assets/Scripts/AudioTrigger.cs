@@ -15,6 +15,11 @@ public class AudioTrigger : MonoBehaviour
 
     private void Start()
     {
+        if (sourceToPlay == null)
+        {
+            sourceToPlay = GameObject.Find("SFXSystem").GetComponent<AudioSource>();
+        }
+        
         if (remoteSFXLocation == null)
         {
             remoteSoundEffect = false;
