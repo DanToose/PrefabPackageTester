@@ -11,17 +11,18 @@ public class TextPopup : MonoBehaviour
     private int textNumber;
     private bool fieldIsActive;
     public Text textField;
-    private GameObject textFieldObject;
+    public GameObject textFieldObject;
     private bool keyWasPressed;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        textFieldObject = GameObject.Find("CanvasPopups/Text");
+        textFieldObject = GameObject.Find("PopupText");
         textField = textFieldObject.GetComponent<Text>();
         initialMessage = textField.text;
         fieldIsActive = false;
+        textFieldObject.SetActive(false);
         textNumber = 0;
     }
 
