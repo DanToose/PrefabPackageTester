@@ -17,8 +17,13 @@ public class AllyFollow : MonoBehaviour
     {
         followingPlayer = false;
         agent = GetComponent<NavMeshAgent>();
-        target = GameObject.FindGameObjectWithTag("Player").transform;
         followProximity = 3.0f;
+        Invoke("FindPlayer", 0.1f);
+    }
+
+    void FindPlayer()
+    {
+        target = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
     public void followPlayerToggle()

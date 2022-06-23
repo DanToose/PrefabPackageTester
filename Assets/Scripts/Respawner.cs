@@ -20,6 +20,16 @@ public class Respawner : MonoBehaviour
     {
         DontDestroyOnLoad(this.gameObject);
         player = GameObject.FindGameObjectWithTag("Player");
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+
+    private void OnLevelWasLoaded(int level)
+    {
         startingPoint = GameObject.FindGameObjectWithTag("StartPoint");
         if (currentCheckpoint == null)
         {
@@ -32,13 +42,6 @@ public class Respawner : MonoBehaviour
 
         InitialSpawn();
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     private void InitialSpawn()
     {
         Debug.Log("St: " + startingPoint);

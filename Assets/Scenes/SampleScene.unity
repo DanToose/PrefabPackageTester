@@ -4403,6 +4403,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isStartpoint: 0
+  isStartpointOnly: 0
   isCheckpoint: 0
   player: {fileID: 0}
   oldCheckpoint: {fileID: 0}
@@ -5195,6 +5196,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 3201149136487089536, guid: e4bea1915735ee745a456835b1ab83f5, type: 3}
+      propertyPath: instaDeathAttacker
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3201149136487089538, guid: e4bea1915735ee745a456835b1ab83f5, type: 3}
       propertyPath: m_ReceiveShadows
       value: 0
@@ -5259,6 +5264,10 @@ PrefabInstance:
     - target: {fileID: 4139642994171465463, guid: 037dcbc5e0a669745a4328c7ca244f48, type: 3}
       propertyPath: player
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4139642994171465463, guid: 037dcbc5e0a669745a4328c7ca244f48, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 037dcbc5e0a669745a4328c7ca244f48, type: 3}

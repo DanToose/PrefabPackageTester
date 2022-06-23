@@ -5,6 +5,7 @@ using UnityEngine;
 public class CheckPoint : MonoBehaviour
 {
     public bool isStartpoint;
+    public bool isStartpointOnly;
     public bool isCheckpoint;
     public GameObject player;
     //private Transform thisPoint;
@@ -27,9 +28,8 @@ public class CheckPoint : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Player")
+        if (other.gameObject.tag == "Player" && !isStartpointOnly)
         {
-            //Debug.Log("And that something was da Playa!");
             oldCheckpoint = player.gameObject.GetComponent<Respawner>().currentCheckpoint;
             oldCheckpoint.GetComponent<CheckPoint>().isCheckpoint = false;
             
