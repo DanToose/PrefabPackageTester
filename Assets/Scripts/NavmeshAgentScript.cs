@@ -6,7 +6,8 @@ using UnityEngine.AI;
 public class NavmeshAgentScript : MonoBehaviour
 {
 
-    public Transform target;
+    public Transform target; //This is the player's body's transform
+    public GameObject player; 
     NavMeshAgent agent;
     public GameObject[] wayPoints;
 
@@ -38,6 +39,7 @@ public class NavmeshAgentScript : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         target = GameObject.FindGameObjectWithTag("PlayerBody").transform;
+        player = GameObject.FindGameObjectWithTag("Player");
         PatrolPoint = 0;
         PatrolPointCount = wayPoints.Length;
         patrolCheckRange = 0.5f;
@@ -59,6 +61,10 @@ public class NavmeshAgentScript : MonoBehaviour
             agent.speed = chaseSpeed;
             agent.SetDestination(target.position);
             lastSeenAt = target.transform.position;
+            if (player.GetComponent<PlayerHealth>().playerIsAlive == false) // If player is dead, AI goes to patrol
+            {
+                AIState = 3;
+            }
         }
 
         if (AIState == 2) // HEAD TO LAST PLACE PLAYER WAS SEEN 
